@@ -1,0 +1,266 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+#generatorContainer {
+  overflow: hidden;
+}
+
+#buttons, #buttons0 {
+  display: flex;
+  justify-content: center;
+}
+
+#buttons button {
+  background-color: rgb(24, 124, 206);
+  border: solid black 2px;
+  border-radius: 10px;
+  color: white;
+  height: 35px;
+  margin: 0 5px;
+}
+
+#generateButton button { 
+  width: 250px;
+  height: 45px;
+  font-size: 18pt;
+}
+
+#stepButton button { 
+  width: 100px;
+  height: 45px;
+  font-size: 18pt;
+}
+
+#runButton button { 
+  width: 100px;
+  height: 45px;
+  font-size: 18pt;
+}
+
+#stopButton button { 
+  width: 100px;
+  height: 45px;
+  font-size: 18pt;
+}
+
+.symbol {
+  font-size: 12pt;
+}
+
+#resetButton button {
+  width: 45px;
+  height: 45px;
+  font-size: 24pt;
+}
+
+#buttons0 button {
+  background-color: rgb(24, 124, 206);
+  border: solid black 2px;
+  border-radius: 10px;
+  color: white;
+  margin: 0 5px;
+}
+
+#generateButton0 button { 
+  width: 250px;
+  height: 45px;
+  font-size: 18pt;
+}
+
+#resetButton0 button {
+  width: 45px;
+  height: 45px;
+  font-size: 24pt;
+}
+
+#buttons button:hover {
+  cursor: pointer;
+}
+
+#buttons0 button:hover {
+  cursor: pointer;
+}
+
+#generationLabel button {
+  height: 45px;
+  width: 300px;
+  font-size: 18pt;
+  margin: 7px 5px 7px 5px;
+  background-color: rgb(4, 94, 168);
+  border: solid black 2px;
+  border-radius: 10px;
+  color: white;
+}
+
+#generationLabel2 button, #ruleLabel button {
+  height: 45px;
+  width: 180px;
+  font-size: 18pt;
+  margin: 7px 5px 7px 5px;
+  background-color: rgb(4, 94, 168);
+  border: solid black 2px;
+  border-radius: 10px;
+  color: white;
+}
+
+#generationLabel button:hover, #generationLabel2 button:hover, #ruleLabel button:hover {
+  cursor: default;
+}
+
+.challenge-box {
+  width: 90%;
+  height: 80px;
+}
+
+.rules-challenge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rule {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rule p {
+  margin: 0;
+}
+
+.rules-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.rules-button, .rulegen-button, .rule51-button {
+  margin: 10px;
+  margin-bottom: 0px;
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  color:rgb(24, 124, 206);
+}
+
+.rules-button:hover, .rulegen-button:hover {
+  background-color: rgb(237, 247, 255);
+  cursor: pointer;
+}
+
+.rules-button:active, .rulegen-button:active {
+  background-color: rgb(190, 226, 255); 
+}
+
+.rules-button p, .rulegen-button p, .rule51-button p {
+  font-size: 22pt;
+  margin: 0;
+}
+
+.small {
+  margin: 4px;
+}
+
+.small p {
+  font-size: 14pt;
+}
+
+#ruleIndicator {
+  margin-bottom: 0;
+}
+
+#ruleGenContainer {
+  margin-top: 10px;
+  margin-bottom: 390px;
+}
+
+#check {
+  background-color: rgb(24, 124, 206);
+  color: white; 
+  border-radius: 10px;
+  margin: 20px;
+  padding: 10px;
+  font-size: 16pt;
+}
+
+#check:hover {
+  cursor: pointer;
+}
+
+#check-feedback {
+  margin: 5px;
+}
+
+.correct {
+  color:green;
+}
+
+.incorrect {
+  color:red;
+}
+
+.check-understanding {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(450px, 5fr));
+  grid-column-gap: 6px;
+  grid-row-gap: 6px;
+  margin: 0;
+}
+
+.question {
+  border: 1px dashed black;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px;
+  height: 350px;
+}
+
+.answers {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+}
+
+.answers button {
+  font-size: 12pt;
+  padding: 10px;
+  margin: 5px;
+  background-color: rgb(24, 124, 206);
+  border: solid black 2px;
+  border-radius: 10px;
+  color: white;
+}
+
+.answers button:hover {
+  cursor: pointer;
+}
+
+#rule-identification {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.text-answer {
+  display: flex;
+  align-items: center;
+  height: 50px;
+}
+
+.text-answer input {
+  height: 40px;
+  width: 140px;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.text-answer button {
+  margin: 20px;
+  font-size: 12pt;
+  padding: 10px;
+  background-color: rgb(24, 124, 206);
+  border: solid black 2px;
+  border-radius: 10px;
+  color: white;
+}

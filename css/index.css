@@ -1,0 +1,57 @@
+.welcome {
+  text-align: center;
+}
+
+.welcome.header {
+  font-size: 50pt;
+  margin-bottom: 0px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.9);
+  width: 800px;
+  border-radius: 10px;
+}
+
+.welcome.description {
+  margin-top: 0px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.9);
+  width: 450px;
+  border-radius: 10px;
+}
+
+#top-image {
+  background-image: url("/images/home-images/ca-30.gif");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-shadow: 0 0 7px rgb(107, 188, 255), 0 0 2px white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 80px;
+  height: 60vh;
+  transition: background-image 2s;
+}
+
+#top-image button {
+  background-color: rgb(24, 124, 206);
+  border-radius: 10px;
+  color: white;
+  font-size: 26pt;
+  padding: 15px;
+  margin: 4vh;
+}
+
+#top-image button:hover {
+  cursor: pointer;
+  background-color: rgb(39, 147, 236);
+}
+
+#top-image button:active {
+  background-color: rgb(5, 89, 158);
+}
+
+main {
+  margin: 0;
+}

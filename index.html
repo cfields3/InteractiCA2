@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link href="css/common.css" rel="stylesheet">
+    <link href="css/index.css" rel="stylesheet">
+    <script src="js/common.js" type="module" defer></script>
+    <script src="js/index.js" type="module" defer></script>
+    <title>InteractiCA</title>
+</head>
+<body>
+    <!-- *********** COMMON ELEMENTS *********** -->
+    <header>
+        <h1><a class="nav-button" href="/">InteractiCA</a></h1>
+
+        <div class="nav-bar">
+            <div class="dropdown">
+                <h3><a class="dropdown-top nav-button" href="/1D-Automata">1D Automata <span style="font-size: 12pt">▼</span></a></h3>
+                <div class="dropdown-content">
+                    <a href="/1D-Automata/cells">Cells in 1D Grids</a>
+                    <a href="/1D-Automata/cell-interactions">Elementary CA</a>
+                    <a href="/1D-Automata/ruleset-exploration">Ruleset Exploration</a>
+                </div>
+            </div>
+            
+            <div class="dropdown">
+                <h3><a class="dropdown-top nav-button" href="/2D-Automata">2D Automata <span style="font-size: 12pt">▼</span></a></h3>
+                <div class="dropdown-content">
+                    <a href="/2D-Automata/conways-rules">Conway's Rules</a>
+                    <a href="/2D-Automata/cgol">Conway's Game of Life</a>
+                    <a href="/2D-Automata/ruleset-exploration">Ruleset Exploration</a>
+                </div>
+            </div>
+            
+            <h3><a class="nav-button" href="/further-discovery">Further Discovery</a></h3>
+        </div>
+
+        <image class="info-button" src="/images/info-button.png"></image>
+    </header>
+    <!-- ************************************** -->
+
+    <div id="top-image">
+        <h1 class="welcome header">Welcome to InteractiCA!</h1>
+        <p class="welcome description">A series of interactive lessons in cellular automata.</p>
+        <button onclick="window.location='/1D-Automata/cells'">Get Started!</button>
+    </div>
+
+    <main>
+        <div class="content">
+            <h2>What are Cellular Automata?</h2>
+            <p>
+                A <b>cellular automaton</b> (CA) is a collection of cells which have state and change over time (plural <i>cellular automata</i>).
+                These changes are driven by rules based on a particular cell's current state and the state of cells around them.
+            </p>
+            <h2>Why should I learn about Cellular Automata?</h2>
+            <p>
+                Cellular automata have applications in many areas. They are present in places such as physics, biology, or even the behavior
+                of avalanches and traffic flow. It is also a great way to get hands-on experience in fundamental concepts of programming
+                and Computer Science. If any of this sounds interesting, or if you just want to learn how the cool patterns you see above are created,
+                InteractiCA is a great place to <a href="/1D-Automata/cells">start</a>.
+            </p>
+            <h2>What is this project?</h2>
+            <p>
+                This project is an independent study project created by two Computer Science Undergraduate Students. To learn more,
+                click the ( i ) in the top right corner!
+            </p>         
+        </div>
+    </main>
+</body>
+</html>

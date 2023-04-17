@@ -1,0 +1,9 @@
+.code-changes {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.change {
+  width: 45%;
+}
