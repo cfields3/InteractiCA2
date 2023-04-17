@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link href="/css/lesson2.2.css" rel="stylesheet">
+    <link href="/css/common.css" rel="stylesheet">
+    <script src="/js/lesson2.2.js" type="module" defer></script>
+    <script src="/js/common.js" type="module" defer></script>
+    <title>Conway's Game of Life - InteractiCA</title>
+</head>
+
+<body>
+    <!-- *********** COMMON ELEMENTS *********** -->
+    <header>
+        <h1><a class="nav-button" href="/">InteractiCA</a></h1>
+
+        <div class="nav-bar">
+            <div class="dropdown">
+                <h3><a class="dropdown-top nav-button" href="/1D-Automata">1D Automata <span style="font-size: 12pt">▼</span></a></h3>
+                <div class="dropdown-content">
+                    <a href="/1D-Automata/cells">Cells in 1D Grids</a>
+                    <a href="/1D-Automata/cell-interactions">Elementary CA</a>
+                    <a href="/1D-Automata/ruleset-exploration">Ruleset Exploration</a>
+                </div>
+            </div>
+            
+            <div class="dropdown">
+                <h3><a class="dropdown-top nav-button" href="/2D-Automata">2D Automata <span style="font-size: 12pt">▼</span></a></h3>
+                <div class="dropdown-content">
+                    <a href="/2D-Automata/conways-rules">Conway's Rules</a>
+                    <a href="/2D-Automata/cgol">Conway's Game of Life</a>
+                    <a href="/2D-Automata/ruleset-exploration">Ruleset Exploration</a>
+                </div>
+            </div>
+            
+            <h3><a class="nav-button" href="/further-discovery">Further Discovery</a></h3>
+        </div>
+
+        <image class="info-button" src="/images/info-button.png"></image>
+    </header>
+    <!-- ************************************** -->
+    
+    <main>
+        <img class="left arrow" src="/images/arrow-button.png">
+        <div class="content">
+            <h1>Lesson 2.2 - Conway's Game of Life</h1>
+            <div class="introduction">
+
+                <p>Throughout this lesson, we will investigate unique patterns in Conway's game of life then, let you
+                    play with the simulation, then modify it!</p>
+
+                <h3>Learning Objectives</h3>
+
+                <p>
+                    By the end of Lesson 2.2, you should be able to...
+                </p>
+    
+                <ul>
+                    <li>Identify the period of a pattern</li>
+                    <li>Learn terminology for classes of patterns</li>
+                    <li>Create different cellular automata rulesets</li>
+                    <li>Gain understanding of why Conway's game of life is unique</li>
+                </ul>
+                
+        </div>
+        <div class="content">
+            <h1>Conway's Game of Life</h1>
+            <p>This interactive simulation is a playground for cellular life!</p>
+            <p>Try clicking and dragging your mouse around on the board to create new life! Controls for the simulation
+                are at the top of the panel. </p>
+            <iframe
+                src="https://codesandbox.io/embed/conways-game-of-life-norules-r72hpb?hidenavigation=1&editorsize=0&hidenavigation=1&hidedevtools=1"
+                style="width:1280px;height:550px;border:0" title="CGOL" allow=""
+                sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts">
+            </iframe>
+
+
+
+        </div>
+        <img class="right arrow" src="/images/arrow-button.png">
+
+
+    </main>
+</body>
+<style>
+    .hint-button {
+        font-size: 22px;
+    }
+</style>
+<style>
+    #answerStatus1 {
+        font-size: 16px;
+    }
+</style>
+<style>
+    #answerStatus2 {
+        font-size: 16px;
+    }
+</style>
+<style>
+    #answerStatus3 {
+        font-size: 16px;
+    }
+</style>
+<style>
+    .multiplechoice {
+        font-size: 22px;
+    }
+</style>
+
+<script>
+    function checkAnswer(clickedButton, correctAnswer, questionID) {
+        if (clickedButton === correctAnswer) {
+            document.getElementById("answerStatus" + questionID).textContent = "Correct! The pattern takes " + correctAnswer + " steps to repeat";
+        } else {
+            document.getElementById("answerStatus" + questionID).textContent = "Incorrect. How many clicks does it take for the pattern to repeat?";
+        }
+    }
+</script>
+
+</html>

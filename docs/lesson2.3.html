@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link href="/css/lesson2.3.css" rel="stylesheet">
+    <link href="/css/common.css" rel="stylesheet">
+    <script src="/js/lesson2.3.js" type="module" defer></script>
+    <script src="/js/common.js" type="module" defer></script>
+    <title>Ruleset Exploration - InteractiCA</title>
+</head>
+
+<body>
+    <!-- *********** COMMON ELEMENTS *********** -->
+    <header>
+        <h1><a class="nav-button" href="/">InteractiCA</a></h1>
+
+        <div class="nav-bar">
+            <div class="dropdown">
+                <h3><a class="dropdown-top nav-button" href="/1D-Automata">1D Automata <span style="font-size: 12pt">▼</span></a></h3>
+                <div class="dropdown-content">
+                    <a href="/2D-Automata/conways-rules">Conway's Rules</a>
+                    <a href="/2D-Automata/cgol">Conway's Game of Life</a>
+                    <a href="/2D-Automata/ruleset-exploration">Ruleset Exploration</a>
+                </div>
+            </div>
+            
+            <div class="dropdown">
+                <h3><a class="dropdown-top nav-button" href="/2D-Automata">2D Automata <span style="font-size: 12pt">▼</span></a></h3>
+                <div class="dropdown-content">
+                    <a href="/2D-Automata/conways-rules">Conway's Rules</a>
+                    <a href="/2D-Automata/cgol">Conway's Game of Life</a>
+                    <a href="/2D-Automata/ruleset-exploration">Ruleset Exploration</a>
+                </div>
+            </div>
+            
+            <h3><a class="nav-button" href="/further-discovery">Further Discovery</a></h3>
+        </div>
+
+        <image class="info-button" src="/images/info-button.png"></image>
+    </header>
+    <!-- ************************************** -->
+    
+    <main>
+        <img class="left arrow" src="/images/arrow-button.png">
+        <div class="content">
+            <h1>Lesson 2.3 - Ruleset Exploration: Life by your own rules</h1>
+
+            <div class="introduction">
+
+                <p>In this lesson, there are guides to help expirment with rulesets to create interesting CA</p>
+                
+                <h3>Learning Objectives</h3>
+    
+                <p>
+                    By the end of Lesson 2.3, you should be able to...
+                </p>
+
+                <ul>
+                    <li>Devlop intuition for how rules affect pattern stability</li>
+                    <li>Create different cellular automata rulesets</li>
+                    <li>Gain understanding of why Conway's game of life is unique</li>
+                </ul>
+
+            </div>
+
+            <div style="display: flex;">
+                <div style="width: 50%;">
+                    <div style="display: flex; flex-direction: column; padding-right: 10px">
+                        <h3>Maze Generator</h3>
+                        <p>With some modifications to the rules, these cells can create a maze-like pattern. Experiment
+                            and
+                            try
+                            to
+                            find it yourself</p>
+                        <button class="hint-button";
+                            onclick="document.getElementById('mazehint1').style.display = 'block'; this.style.display = 'none';">Reveal
+                            Hint</button>
+                        <p id="mazehint1" style="display: none;">Only one rule needs to be changed. Use the reset button
+                            in the bottom left to reset rules</p>
+
+                        <button class="hint-button";
+                            onclick="document.getElementById('mazehint2').style.display = 'block'; this.style.display = 'none';">Reveal
+                            Hint</button>
+                        <p id="mazehint2" style="display: none;">The bottom right rule needs to be changed by one to make a
+                            maze.
+                        </p>
+
+                    </div>
+                </div>
+                <div style="width: .15%; background-color: #d4d4d4 "></div>
+                <div style="width: 50%; padding-left: 10px">
+                    <div style="display: flex; flex-direction: column;">
+                        <h3>Cave Generator</h3>
+                        <p>Some video games use cellular automata to create cave-like levels. Experiment to find this
+                            ruleset.
+                        </p>
+                        <button class="hint-button";
+                            onclick="document.getElementById('cavehint1').style.display = 'block'; this.style.display = 'none';">Reveal
+                            Hint</button>
+                        <p id="cavehint1" style="display: none;">This pattern only needs two of the four rules. Let the equality statement for one rule on each side to X.</p>
+                        <button class="hint-button";
+                            onclick="document.getElementById('cavehint2').style.display = 'block'; this.style.display = 'none';">Reveal
+                            Hint</button>
+                        <p id="cavehint2" style="display: none;">The only active rule for cell birth should be 'neighbors > 4' and the cell death rule should be 'neighbors < X'. X is the same for both. Use the 'Random State' button if the board is blank.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div>&emsp;</div>
+            <iframe
+                src="https://codesandbox.io/embed/conways-game-of-life-vxsmmm?hidenavigation=1&editorsize=0&hidenavigation=1&hidedevtools=1"
+                style="width:1280px;height:650px;border:0" title="CGOL" allow=""
+                sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts">
+            </iframe>
+
+            </div>
+
+        </div>
+        <img class="right arrow" src="/images/arrow-button.png">
+
+
+    </main>
+</body>
+<style>
+    .hint-button {
+        font-size: 22px;
+    }
+</style>
+<style>
+    #answerStatus1 {
+        font-size: 16px;
+    }
+</style>
+<style>
+    #answerStatus2 {
+        font-size: 16px;
+    }
+</style>
+<style>
+    #answerStatus3 {
+        font-size: 16px;
+    }
+</style>
+<style>
+    .multiplechoice {
+        font-size: 22px;
+    }
+</style>
+
+<script>
+    function checkAnswer(clickedButton, correctAnswer, questionID) {
+        if (clickedButton === correctAnswer) {
+            document.getElementById("answerStatus" + questionID).textContent = "Correct! The pattern takes " + correctAnswer + " steps to repeat";
+        } else {
+            document.getElementById("answerStatus" + questionID).textContent = "Incorrect. How many clicks does it take for the pattern to repeat?";
+        }
+    }
+</script>
+
+</html>

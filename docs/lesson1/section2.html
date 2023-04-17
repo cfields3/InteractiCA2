@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link href="/css/lesson1.css" rel="stylesheet">
+    <link href="/css/common.css" rel="stylesheet">
+    <script src="/js/lesson1/section2.js" type="module" defer></script>
+    <script src="/js/common.js" type="module" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.6.0/lib/p5.js"></script> <!-- for p5.js library-->
+    <script src="/js/sketches/sketch1.2.js"></script>
+    <title>Elementary CA - InteractiCA</title>
+</head>
+<body>
+   <!-- *********** COMMON ELEMENTS *********** -->
+   <header>
+    <h1><a class="nav-button" href="/">InteractiCA</a></h1>
+
+    <div class="nav-bar">
+        <div class="dropdown">
+            <h3><a class="dropdown-top nav-button" href="/1D-Automata">1D Automata <span style="font-size: 12pt">▼</span></a></h3>
+            <div class="dropdown-content">
+                <a href="/1D-Automata/cells">Cells in 1D Grids</a>
+                <a href="/1D-Automata/cell-interactions">Elementary CA</a>
+                <a href="/1D-Automata/ruleset-exploration">Ruleset Exploration</a>
+            </div>
+        </div>
+        
+        <div class="dropdown">
+            <h3><a class="dropdown-top nav-button" href="/2D-Automata">2D Automata <span style="font-size: 12pt">▼</span></a></h3>
+            <div class="dropdown-content">
+                <a href="/2D-Automata/conways-rules">Conway's Rules</a>
+                <a href="/2D-Automata/cgol">Conway's Game of Life</a>
+                <a href="/2D-Automata/ruleset-exploration">Ruleset Exploration</a>
+            </div>
+        </div>
+        
+        <h3><a class="nav-button" href="/further-discovery">Further Discovery</a></h3>
+    </div>
+
+    <image class="info-button" src="/images/info-button.png"></image>
+</header>
+<!-- ************************************** -->
+
+    <main>
+        <img class="left arrow" src="/images/arrow-button.png">
+        <div class="content">
+            <h1>Lesson 1.2 - Elementary Cellular Automata</h1>
+
+            <div class="introduction">
+                <p>
+                    In this lesson, we will invesigate the formulation of Elementary Cellular Automata rulesets & corresponding rule numbers using a cell's neighbors.
+                </p>
+    
+                <h3>Learning Objectives</h3>
+    
+                <p>
+                    By the end of Lesson 1.2, you should be able to...
+                </p>
+    
+                <ul>
+                    <li>Define the basic concepts of an Elementary Cellular Automaton</li>
+                    <li>Identify cellular automata rulesets and be able to predict changes in these rulesets</li>
+                    <li>Formulate a rule number based on a particular automata's ruleset</li>
+                </ul>
+            </div>
+
+            <p>
+                Let's revisit our definition of cellular automata. In the previous lesson, we found that CA are composed
+                of <i>cells that interact over time steps called generations</i>. For the purposes of this lesson, we will
+                focus on <b>Elementary Cellular Automata</b> (ECA): automata comprised of cells with <i>two states</i> and <i>rulesets depending on the state
+                of their nearest neighbors</i>. But what do we mean by <b>neighbors</b> and <b>rulesets</b>?
+            </p>
+
+            <p>
+                In general, a CA <b>neighborhood</b> is a group of cells surrounding a particular cell, within some distance. Remember that an ECA's rules are based on its <i>nearest neighbors</i>. Note that the left/right
+                neighbors of the far left/right cells are assumed to be <i>off</i> cells. Select a cell below to see its neighbors:
+            </p>
+
+            <p style="text-align:center">
+                <i>Select a cell to see its neighbors.</i>
+            </p>
+
+            <div class="container">
+                <div id="neighborhoodsContainer"></div>
+            </div>
+
+            <p>
+                A CA's <b>ruleset</b> defines the way that its cells interact. Remember the "flipping" automata from last lesson?
+                <i>The flipping nature describes that automata's ruleset.</i> We have provided the first two generations of that automata
+                below (given a predetermined initial state). <i>Notice that this automata's cells actually only depend on the previous state of themselves and
+                not their neighbors.</i>
+            </p>
+
+            <p style="text-align:center">
+                <i>Select a cell from generation 1 to see which cells from generation 0 it was generated from.</i>
+            </p>
+
+            <div class="container">
+                <div id="rulesContainer"></div>
+            </div>
+
+            <p>
+                Cellular automata rulesets are often described by giving a <i>set of configurations of states between generations</i>. For our
+                "flipping" automata, this would mean the below configurations are true. For example, the first configuration shows that if a cell
+                and both its neighbors are <i>on</i> during some generation, the resulting cell in the next generation will be <i>off</i>. Try
+                to match each output of the previous simulation to one of these (feel free to use its neighbor selection tool).
+            </p>
+
+            <p style="text-align:center">
+                <i>Ruleset for the "flipping" automata.</i>
+            </p>
+
+            <div class="rules-challenge">
+                <div class="rules-buttons">
+                    <div class="rule">
+                        <button id="rule0" class="rule51-button">
+                            <p>◼︎◼︎◼︎</p>
+                            <p>↓</p>
+                            <p>◻︎</p>
+                        </button>
+                    </div>
+                    <div class="rule">
+                        <button id="rule1" class="rule51-button">
+                            <p>◼︎◼︎◻︎</p>
+                            <p>↓</p>
+                            <p>◻︎</p>
+                        </button>
+                    </div>
+                    <div class="rule">
+                        <button id="rule2" class="rule51-button">
+                            <p>◼︎◻︎◼︎</p>
+                            <p>↓</p>
+                            <p>◼︎</p>
+                        </button>
+                    </div>
+                    <div class="rule">
+                        <button id="rule3" class="rule51-button">
+                            <p>◼︎◻︎◻︎</p>
+                            <p>↓</p>
+                            <p>◼︎</p>
+                        </button>
+                    </div>
+                    <div class="rule">
+                       <button id="rule4" class="rule51-button">
+                            <p>◻︎◼︎◼︎</p>
+                            <p>↓</p>
+                            <p>◻︎</p>
+                        </button> 
+                    </div>
+                    <div class="rule">
+                       <button id="rule5" class="rule51-button">
+                            <p>◻︎◼︎◻</p>
+                            <p>↓</p>
+                            <p>◻︎</p>
+                        </button> 
+                    </div>
+                    <div class="rule">
+                       <button id="rule6" class="rule51-button">
+                            <p>◻︎◻︎◼︎</p>
+                            <p>↓</p>
+                            <p>◼︎</p>
+                        </button> 
+                    </div>
+                    <div class="rule">
+                        <button id="rule7" class="rule51-button">
+                            <p>◻︎◻︎◻︎</p>
+                            <p>↓</p>
+                            <p>◼︎</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <p>
+                Often, cellular automata are classified by a <b>rule number</b> that describes what their particular ruleset does. Our "flipping" automata is actually called <i>rule 51</i>. Why 51?
+                The naming convention for rule numbers was created by Stephen Wolfram and is known as <b>Wolfram Code</b>.
+            </p>
+
+            <p>
+                The specific number assigned to a ruleset comes from the binary representation of <i>on and off</i> states. For example,
+                <i>00110011<sub>2</sub></i> is binary for <i>51</i>, the ruleset from the last lesson. Since there are 8 possible configurations of a cell with its immediate neighbors, 
+                there are 256 (2<sup>8</sup>) possible rulesets.
+            </p>
+
+            <p style="text-align:center">
+                <i>Click each button to toggle the state of the output cell and see the cooresponding rule number.</i>
+            </p>
+
+            <div class="rules-challenge">
+                <div class="rules-buttons">
+                    <div class="rule">
+                        <button id="rule0" class="rulegen-button">
+                            <p>◼︎◼︎◼︎</p>
+                            <p>↓</p>
+                            <p id="resultgen0">◻︎</p>
+                        </button>
+                        <p>2<sup>7</sup> = 128</p>
+                    </div>
+                    <div class="rule">
+                        <button id="rule1" class="rulegen-button">
+                            <p>◼︎◼︎◻︎</p>
+                            <p>↓</p>
+                            <p id="resultgen1">◻︎</p>
+                        </button>
+                        <p>2<sup>6</sup> = 64</p>
+                    </div>
+                    <div class="rule">
+                        <button id="rule2" class="rulegen-button">
+                            <p>◼︎◻︎◼︎</p>
+                            <p>↓</p>
+                            <p id="resultgen2">◻︎</p>
+                        </button>
+                        <p>2<sup>5</sup> = 32</p>
+                    </div>
+                    <div class="rule">
+                        <button id="rule3" class="rulegen-button">
+                            <p>◼︎◻︎◻︎</p>
+                            <p>↓</p>
+                            <p id="resultgen3">◻︎</p>
+                        </button>
+                        <p>2<sup>4</sup> = 16</p>
+                    </div>
+                    <div class="rule">
+                       <button id="rule4" class="rulegen-button">
+                            <p>◻︎◼︎◼︎</p>
+                            <p>↓</p>
+                            <p id="resultgen4">◻︎</p>
+                        </button> 
+                        <p>2<sup>3</sup> = 8</p>
+                    </div>
+                    <div class="rule">
+                       <button id="rule5" class="rulegen-button">
+                            <p>◻︎◼︎◻</p>
+                            <p>↓</p>
+                            <p id="resultgen5">◻︎</p>
+                        </button> 
+                        <p>2<sup>2</sup> = 4</p>
+                    </div>
+                    <div class="rule">
+                       <button id="rule6" class="rulegen-button">
+                            <p>◻︎◻︎◼︎</p>
+                            <p>↓</p>
+                            <p id="resultgen6">◻︎</p>
+                        </button> 
+                        <p>2<sup>1</sup> = 2</p>
+                    </div>
+                    <div class="rule">
+                        <button id="rule7" class="rulegen-button">
+                            <p>◻︎◻︎◻︎</p>
+                            <p>↓</p>
+                            <p id="resultgen7">◻︎</p>
+                        </button>
+                        <p>2<sup>0</sup> = 1</p>
+                    </div>
+                </div>
+                <p id="ruleIndicator" hidden>This is rule <span id="ruleNumber"></span> <i>(Computed by adding: <span id="ruleAddition"></span>)</i>.</p>
+            </div>
+
+            <h3>Check Your Understanding</h3>
+
+            <p>
+                The following is the same generation simulation from the previous lesson. This time it is using a different ruleset. This
+                ruleset is often used when describing ECA because of its interesting patterns and chaotic nature. Try and figure
+                out which ruleset this is.
+            </p>
+
+            <div class="container" id="generatorContainer"></div>
+            <div class="container" id="generationLabel"></div>
+            <div id="buttons">
+                <div class="container" id="generateButton"></div>
+                <div class="container" id="resetButton"></div>   
+            </div>
+
+            <p>
+                Define the ruleset for this cellular automaton. Click each button to toggle the state of the cooresponding output cell.
+            </p>
+
+            <div class="rules-challenge">
+                <div class="rules-buttons">
+                    <button id="rule0" class="rules-button">
+                        <p>◼︎◼︎◼︎</p>
+                        <p>↓</p>
+                        <p id="result0">◻︎</p>
+                    </button>
+                    <button id="rule1" class="rules-button">
+                        <p>◼︎◼︎◻︎</p>
+                        <p>↓</p>
+                        <p id="result1">◻︎</p>
+                    </button>
+                    <button id="rule2" class="rules-button">
+                        <p>◼︎◻︎◼︎</p>
+                        <p>↓</p>
+                        <p id="result2">◻︎</p>
+                    </button>
+                    <button id="rule3" class="rules-button">
+                        <p>◼︎◻︎◻︎</p>
+                        <p>↓</p>
+                        <p id="result3">◻︎</p>
+                    </button>
+                    <button id="rule4" class="rules-button">
+                        <p>◻︎◼︎◼︎</p>
+                        <p>↓</p>
+                        <p id="result4">◻︎</p>
+                    </button>
+                    <button id="rule5" class="rules-button">
+                        <p>◻︎◼︎◻</p>
+                        <p>↓</p>
+                        <p id="result5">◻︎</p>
+                    </button>
+                    <button id="rule6" class="rules-button">
+                        <p>◻︎◻︎◼︎</p>
+                        <p>↓</p>
+                        <p id="result6">◻︎</p>
+                    </button>
+                    <button id="rule7" class="rules-button">
+                        <p>◻︎◻︎◻︎</p>
+                        <p>↓</p>
+                        <p id="result7">◻︎</p>
+                    </button>
+                </div>
+    
+                <button id="check">Check</button>
+    
+                <p id="check-feedback"></p>
+            </div>
+
+            <div id="rule-identification">
+               <p>
+                    What is the rule number for this ruleset?
+                </p>
+    
+                <div class="text-answer">
+                    <input id="rule-input" name="Rule Number" placeholder="Enter Rule Number">
+                    <button id="rule-submit">Submit</button>
+                </div>
+
+                <p id="rule-feedback"></p>
+            </div>
+
+        </div>
+        <img class="right arrow" src="/images/arrow-button.png">
+    </main>
+</body>
+</html>

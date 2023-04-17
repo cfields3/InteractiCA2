@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link href="/css/lesson1.css" rel="stylesheet">
+    <link href="/css/common.css" rel="stylesheet">
+    <script src="/js/lesson1/section1.js" type="module" defer></script>
+    <script src="/js/common.js" type="module" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.6.0/lib/p5.js"></script> <!-- for p5.js library-->
+    <script src="/js/sketches/sketch1.1.js"></script>
+    <title>Cells in 1D Grids - InteractiCA</title>
+</head>
+<body>
+    <!-- *********** COMMON ELEMENTS *********** -->
+    <header>
+        <h1><a class="nav-button" href="/">InteractiCA</a></h1>
+
+        <div class="nav-bar">
+            <div class="dropdown">
+                <h3><a class="dropdown-top nav-button" href="/1D-Automata">1D Automata <span style="font-size: 12pt">▼</span></a></h3>
+                <div class="dropdown-content">
+                    <a href="/1D-Automata/cells">Cells in 1D Grids</a>
+                    <a href="/1D-Automata/cell-interactions">Elementary CA</a>
+                    <a href="/1D-Automata/ruleset-exploration">Ruleset Exploration</a>
+                </div>
+            </div>
+            
+            <div class="dropdown">
+                <h3><a class="dropdown-top nav-button" href="/2D-Automata">2D Automata <span style="font-size: 12pt">▼</span></a></h3>
+                <div class="dropdown-content">
+                    <a href="/2D-Automata/conways-rules">Conway's Rules</a>
+                    <a href="/2D-Automata/cgol">Conway's Game of Life</a>
+                    <a href="/2D-Automata/ruleset-exploration">Ruleset Exploration</a>
+                </div>
+            </div>
+            
+            <h3><a class="nav-button" href="/further-discovery">Further Discovery</a></h3>
+        </div>
+
+        <image class="info-button" src="/images/info-button.png"></image>
+    </header>
+    <!-- ************************************** -->
+
+    <main>
+        <img class="left arrow" src="/images/arrow-button.png">
+        <div class="content">
+            <h1>Lesson 1.1 - Cells: Interactions in 1D Grids</h1>
+
+            <div class="introduction">
+
+                <p><i>
+                    Throughout the first 3 lessons, you will learn some of the basics of cellular automata through 1-Dimensional (1D) Grids.
+                    By the end, you will have a chance to explore creating 1D cellular automata of your own!
+                </i></p>
+
+                <p>
+                    In this lesson, you will learn about cells and their interactions over generations in 1-Dimensional Grids.
+                </p>
+    
+                <h3>Learning Objectives</h3>
+    
+                <p>
+                    By the end of Lesson 1.1, you should be able to...
+                </p>
+    
+                <ul>
+                    <li>Recognize what a cell is, in the context of cellular automata</li>
+                    <li>Understand how cells interact across generations</li>
+                </ul>
+            </div>
+
+            <p>
+                To better understand how more complex automata like those on the <a href="/">home page</a> of this site work,
+                let's first cover some basic concepts.
+            </p>
+
+            <p>
+                The core building blocks of cellular automata are <b>cells</b>. Cells have a <i>finite</i> (fixed) number of states. Try interacting with the cell below! Notice that it has just two
+                <b>states</b>: <i>on</i> and <i>off</i> (sometimes referred to as <i>alive</i> and <i>dead</i>, <i>1</i> and <i>0</i>, or <i>true</i> and <i>false</i>). This is common, though more
+                complex automata can have more states. Observe that a cell can only take a <i>single</i> state at any given time.
+            </p>
+
+            <div class="container">
+                <div id="boxContainer"></div>
+            </div>
+
+            <p>   
+                Now, let's arrange a row of these same cells together. In cellular automata, this is a <b>1-Dimensional Grid</b> of cells.
+            </p>
+
+            <div class="container">
+                <div class="container" id="arrayContainer"></div>
+            </div>
+
+            <p>
+                This is great - but isn’t a cellular automaton. Why? The cells don’t interact with each other! These interactions are a crucial
+                part of what makes cellular automata work. Let's add this to the simulation below, which is now a simple cellular automata!
+            </p>
+
+            <p>
+                <i>Using the simulation: Turn some cells on to set the initial state, then click <b>Generate Next Step</b> to step through
+                    discrete <b>timesteps</b>. You are limited to 10 timesteps. Use the <b>⟳</b> button to reset the simulation to its original state. </i>
+            </p>
+
+            <div class="container" id="generatorContainer0"></div>
+            <div id="buttons0">
+                <div class="container" id="generateButton0"></div>
+                <div class="container" id="resetButton0"></div>
+            </div>
+
+            <p>
+                To better see the interactions over time, cellular automata are often displayed with <i>each timestep on a separate row</i>. Each timestep
+                (or row) is a <b>generation</b>. Note that the simulation below also includes a generation number that starts at 0 for the
+                initial state <i>(this is sometimes called zero-indexing)</i>.
+            </p>
+
+            <div class="container" id="generatorContainer"></div>
+            <div class="container" id="generationLabel"></div>
+            <div id="buttons">
+                <div class="container" id="generateButton"></div>
+                <div class="container" id="resetButton"></div>   
+            </div>
+
+            <h3>Check Your Understanding</h3>
+
+            <p>
+                To check you that you have the basics down, answer the following:
+            </p>
+
+            <div class="check-understanding">
+                <div class="question">
+                    <p>How many states did the cells in the Cellular Automaton above have?</p>
+
+                    <div class="answers">
+                        <button class="answer">1 state</button>
+                        <button class="correct answer">2 states</button>
+                        <button class="answer">3 states</button>
+                        <button class="answer">4 states</button>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <p>In general, how many states do CA cells have?</p>
+
+                    <div class="answers">
+                        <button class="answer">1 state</button>
+                        <button class="answer">2 states</button>
+                        <button class="answer">Up to 4 states</button>
+                        <button class="correct answer">It depends on the class of CA</button>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <p>In general, how many states can CA cells have at a time?</p>
+
+                    <div class="answers">
+                        <button class="correct answer">1 state</button>
+                        <button class="answer">2 states</button>
+                        <button class="answer">Up to 4 states</button>
+                        <button class="answer">It depends on the class of CA</button>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <p>What is a generation, in the context of Cellular Automata?</p>
+
+                    <div class="answers">
+                        <button class="answer">It defines how the rules of a CA change over time</button>
+                        <button class="correct answer">A timestep in which a CA changes</button>
+                        <button class="answer">How fast a CA is able to progress</button>
+                        <button class="answer">The first row of a CA measured over time</button>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <p>How were the cells in the final 2 simulations interacting over each generation?</p>
+
+                    <div class="answers">
+                        <button class="answer"><b>"All on:"</b> cells turned on, regardless of state</button>
+                        <button class="correct answer"><b>"Flipping:"</b> cells that were off turned on</button>
+                        <button class="answer"><b>"Diagonal:"</b> cells with on cell to left turned on</button>
+                        <button class="answer"><b>"Diagonal:"</b> cells with on cell to right turned on</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <img class="right arrow" src="/images/arrow-button.png">
+    </main>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link href="/css/lesson1.css" rel="stylesheet">
+    <link href="/css/common.css" rel="stylesheet">
+    <script src="/js/lesson1/section3.js" type="module" defer></script>
+    <script src="/js/common.js" type="module" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.6.0/lib/p5.js"></script> <!-- for p5.js library-->
+    <script src="/js/sketches/sketch1.3.js"></script>
+    <title>Ruleset Exploration - InteractiCA</title>
+</head>
+<body>
+    <!-- *********** COMMON ELEMENTS *********** -->
+    <header>
+        <h1><a class="nav-button" href="/">InteractiCA</a></h1>
+
+        <div class="nav-bar">
+            <div class="dropdown">
+                <h3><a class="dropdown-top nav-button" href="/1D-Automata">1D Automata <span style="font-size: 12pt">▼</span></a></h3>
+                <div class="dropdown-content">
+                    <a href="/1D-Automata/cells">Cells in 1D Grids</a>
+                    <a href="/1D-Automata/cell-interactions">Elementary CA</a>
+                    <a href="/1D-Automata/ruleset-exploration">Ruleset Exploration</a>
+                </div>
+            </div>
+            
+            <div class="dropdown">
+                <h3><a class="dropdown-top nav-button" href="/2D-Automata">2D Automata <span style="font-size: 12pt">▼</span></a></h3>
+                <div class="dropdown-content">
+                    <a href="/2D-Automata/conways-rules">Conway's Rules</a>
+                    <a href="/2D-Automata/cgol">Conway's Game of Life</a>
+                    <a href="/2D-Automata/ruleset-exploration">Ruleset Exploration</a>
+                </div>
+            </div>
+            
+            <h3><a class="nav-button" href="/further-discovery">Further Discovery</a></h3>
+        </div>
+
+        <image class="info-button" src="/images/info-button.png"></image>
+    </header>
+    <!-- ************************************** -->
+
+    <main>
+        <img class="left arrow" src="/images/arrow-button.png">
+        <div class="content">
+            <h1>Lesson 1.3 - Ruleset Exploration</h1>
+
+            <div class="introduction">
+                <p>
+                    In this lesson, you will get a chance to apply knowledge from previous sections to explore different CA rulesets!
+                </p>
+
+                <h3>Learning Objectives</h3>
+    
+                <p>
+                    By the end of Lesson 1.3, you should be able to...
+                </p>
+    
+                <ul>
+                    <li>Have a better understanding of how different rulesets for 1D ECA work</li>
+                    <li>Predict how differences in rulesets for ECA will affect changes between generations</li>
+                </ul>
+            </div>
+
+            <p>
+                The layout of this lesson is more flexible towards exploration, so feel free to spend as much or as little time on it.
+                It will serve as a culmination of the ideas that we have learned thus far.
+            </p>
+
+            <p>
+                Below, there is a simulation that is similar to that of previous lessons,
+                but with a couple changes to make it more flexible:
+
+                <ol>
+                    <li>The generation has a set grid, and will fill up over time, rather than creating new boxes</li>
+                    <li>You now able to change the ruleset of the CA. Use the familiar toggle buttons to change the ruleset and rule indicator</li>
+                    <li>The <b>Generate Next Step</b> button is now simply <b>Step ▶</b></li>
+                    <li>There is now a <b>Run ▶▶</b> button, which you can click for the simulation to continue running until you click <b>Stop ◼︎</b></li>
+                </ol>
+            </p>
+
+            <p>
+                Note that it is preloaded with Rule 30 and a single cell that is <i>on</i> in the center.
+            </p>
+
+            <p style="text-align: center">
+                <i>Explore the simulation, and see what interesting patterns you can create with 1D ECA.</i>
+            </p>
+
+            <div class="container">
+                <div id="ruleGenContainer"></div>
+            </div>
+
+            <div class="rules-challenge">
+                <div class="rules-buttons">
+                    <div class="rule">
+                        <button id="rule0" class="rulegen-button small">
+                            <p>◼︎◼︎◼︎</p>
+                            <p>↓</p>
+                            <p id="resultgen0">◻︎</p>
+                        </button>
+                    </div>
+                    <div class="rule">
+                        <button id="rule1" class="rulegen-button small">
+                            <p>◼︎◼︎◻︎</p>
+                            <p>↓</p>
+                            <p id="resultgen1">◻︎</p>
+                        </button>
+                    </div>
+                    <div class="rule">
+                        <button id="rule2" class="rulegen-button small">
+                            <p>◼︎◻︎◼︎</p>
+                            <p>↓</p>
+                            <p id="resultgen2">◻︎</p>
+                        </button>
+                    </div>
+                    <div class="rule">
+                        <button id="rule3" class="rulegen-button small">
+                            <p>◼︎◻︎◻︎</p>
+                            <p>↓</p>
+                            <p id="resultgen3">◼︎</p>
+                        </button>
+                    </div>
+                    <div class="rule">
+                       <button id="rule4" class="rulegen-button small">
+                            <p>◻︎◼︎◼︎</p>
+                            <p>↓</p>
+                            <p id="resultgen4">◼︎</p>
+                        </button> 
+                    </div>
+                    <div class="rule">
+                       <button id="rule5" class="rulegen-button small">
+                            <p>◻︎◼︎◻</p>
+                            <p>↓</p>
+                            <p id="resultgen5">◼︎</p>
+                        </button> 
+                    </div>
+                    <div class="rule">
+                       <button id="rule6" class="rulegen-button small">
+                            <p>◻︎◻︎◼︎</p>
+                            <p>↓</p>
+                            <p id="resultgen6">◼︎</p>
+                        </button> 
+                    </div>
+                    <div class="rule">
+                        <button id="rule7" class="rulegen-button small">
+                            <p>◻︎◻︎◻︎</p>
+                            <p>↓</p>
+                            <p id="resultgen7">◻︎</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="container" id="ruleLabel">
+                    <button id="ruleIndicator">Rule: <span id="ruleNumber">30</span></button>
+                </div>
+                <div class="container" id="generationLabel2"></div>
+            </div>
+            
+
+            <div id="buttons">
+                <div class="container" id="stepButton"></div>
+                <div class="container" id="runButton"></div>
+                <div class="container" id="stopButton"></div>
+                <div class="container" id="resetButton"></div>
+            </div>
+        </div>
+        <img class="right arrow" src="/images/arrow-button.png">
+    </main>
+</body>
+</html>
